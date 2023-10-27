@@ -1,0 +1,51 @@
+ALGORITHM sum_all_distinct_elements
+VAR 
+    ArraySet1: ARRAY_OF INTEGER[3,1,7,9] //first array
+    ArraySet2: ARRAY_OF INTEGER[2,4,1,9,3] //second array
+    i, j, k, sum: INTEGER;
+BEGIN
+    sum := 0;
+    
+    // Loop through the elements of the first array, 'ArraySet1'
+    FOR i FROM 0 TO ArraySet1.length-1 DO
+        // Initialize a variable to check for distinct elements
+        distinct := TRUE;
+        
+        // Loop through the elements of the 'ArraySet2' array to check for distinctions
+        FOR j FROM 0 TO ArraySet2.length-1 DO
+            IF ArraySet1[i] = ArraySet2[j] THEN
+                // If a matching element is found in 'ArraySet2', mark it as not distinct and exit the loop
+                distinct := FALSE;
+                BREAK;
+            END_IF
+        END_FOR
+        
+        // If 'ArraySet1[i]' is a distinct element, add it to 'sum'
+        IF distinct THEN
+            sum := sum + ArraySet1[i];
+        END_IF
+    END_FOR
+
+    // Now, check the 'ArraySet2' array for distinct elements not in 'ArraySet1'
+    FOR k FROM 0 TO ArraySet2.length-1 DO
+        // Initialize a variable to check for distinct elements
+        distinct := TRUE;
+        
+        // Loop through the 'ArraySet1' array to check for distinctions
+        FOR j FROM 0 TO ArraySet1.length-1 DO
+            IF ArraySet2[k] = ArraySet1[j] THEN
+                // If a matching element is found in 'ArraySet1', mark it as not distinct and exit the loop
+                distinct := FALSE;
+                BREAK;
+            END_IF
+        END_FOR
+        
+        // If 'ArraySet2[k]' is a distinct element, add it to 'sum'
+        IF distinct THEN
+            sum := sum + ArraySet2[k];
+        END_IF
+    END_FOR
+
+    // Display the sum of distinct elements
+    Write(sum);
+END

@@ -1,0 +1,47 @@
+PROCEDURE dot_product(v1, v2: ARRAY_OF REAL; VAR ps: REAL; n: INTEGER);
+VAR
+    i: INTEGER;
+BEGIN
+    ps := 0;
+    FOR i FROM 0 TO n - 1 DO //Loop through the dimension of the vectors
+        ps := ps + v1[i] * v2[i]; // dot product calculation
+    END_FOR
+END;
+
+ALGORITHM DotProduct
+VAR
+    v1, v2: ARRAY_OF REAL[50];  // Assuming a maximum dimension of 50
+    n, i: INTEGER;
+    ps: REAL;  // Scalar product
+
+BEGIN
+    // Input the dimension of the vectors
+    Write("Enter the dimension of the vectors: ");
+    Read(n); // reads user specified dimension
+
+    IF (n < 1) OR (n > 50) THEN
+        Write("Invalid dimension. Please use a dimension between 1 and 50.");
+    ELSE
+        FOR i FROM 1 TO n DO // n-dimension
+            // Input the elements of v1
+            FOR j FROM 0 TO n - 1 DO
+                Read(v1[j]); //read the elemnts of the first vector
+            END_FOR
+
+            // Input the elements of v2
+            FOR j FROM 0 TO n - 1 DO
+                Read(v2[j]); // read the elemnts of second vector
+            END_FOR
+
+            // Calculate the dot product of v1 and v2
+            dot_product(v1, v2, ps, n);
+
+            // Check if the dot product is zero (orthogonal vectors)
+            IF ps = 0 THEN
+                Write("Vectors are orthogonal");
+            ELSE
+                Write("Vectors are not orthogonal");
+            END_IF
+        END_FOR
+    END_IF
+END

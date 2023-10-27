@@ -16,8 +16,8 @@ VAR
 
 BEGIN
     // Input the dimension of the vectors
-    Write("Enter the dimension of the vectors: ");
-    Read(n); // reads user specified dimension
+    Write("Enter the dimension of the whole vectors: ");
+    Read(n); // reads user specified dimension for the list of vectors
 
     IF (n < 1) OR (n > 50) THEN
         Write("Invalid dimension. Please use a dimension between 1 and 50.");
@@ -25,7 +25,7 @@ BEGIN
         FOR i FROM 1 TO n DO // n-dimension
             // Input the elements of v1
             FOR j FROM 0 TO n - 1 DO
-                Read(v1[j]); //read the elemnts of the first vector
+                Read(v1[j]); //read the elements of the first vector
             END_FOR
 
             // Input the elements of v2
